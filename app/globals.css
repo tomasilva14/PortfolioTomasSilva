@@ -272,6 +272,50 @@
       linear-gradient(to bottom, oklch(0.91 0.006 160 / 0.5) 1px, transparent 1px);
     background-size: 56px 56px;
   }
+
+  .skills-marquee {
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .skills-marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: skills-marquee var(--skills-marquee-duration, 30s) linear infinite;
+  }
+
+  .skills-marquee-reverse {
+    animation-direction: reverse;
+  }
+
+  .skills-marquee-group {
+    display: flex;
+    gap: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .skills-marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes skills-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skills-marquee-track {
+      animation: none;
+      transform: none;
+    }
+  }
 }
 
 @media print {
