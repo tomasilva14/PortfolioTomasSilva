@@ -18,7 +18,7 @@ export type Project = {
 }
 
 export type SkillBlock = {
-  id: "A" | "B" | "C"
+  id: "A" | "B" | "C" | "D"
   code: string
   title: string
   description: string
@@ -134,9 +134,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     skills: {
       label: "Compétences",
-      title: "Compétences par bloc de certification",
+      title: "Compétences par domaine",
       intro:
-        "Mes compétences sont organisées selon les trois blocs du référentiel Développeur Web, avec un niveau de maîtrise auto-évalué.",
+        "Mes compétences sont organisées par domaines techniques et outils de travail afin de refléter plus précisément mon profil.",
       blocks: [
         {
           id: "A",
@@ -149,6 +149,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
             { name: "JavaScript (ES2023+)", description: "Interactivité dynamique et logique client modernes" },
             { name: "React", description: "Framework pour construire des interfaces composables et performantes" },
             { name: "TypeScript", description: "Typage statique pour un code plus sûr et maintenable" },
+            { name: "Vue.js", description: "Framework progressif pour créer des interfaces réactives et des applications monopage" },
             { name: "Accessibilité (WCAG)", description: "Garantir l'accès du site à tous les utilisateurs" },
           ],
         },
@@ -159,10 +160,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
           description:
             "Créer une base de données, développer des composants d'accès aux données et une API sécurisée.",
           items: [
-            { name: "Next.js (API & RSC)", description: "API routes et Server Components pour un backend intégré" },
             { name: "Node.js", description: "Runtime JavaScript côté serveur pour applications scalables" },
+            { name: "PHP", description: "Langage côté serveur utilisé pour développer des sites dynamiques, des API et des CMS" },
             { name: "SQL / PostgreSQL", description: "Gestion des données relationnelles et requêtes complexes" },
-            { name: "REST & authentification", description: "Design d'API et sécurisation des accès utilisateurs" },
+            { name: "MongoDB", description: "Base de données NoSQL orientée documents, adaptée aux schémas flexibles" },
+            { name: "REST & authentification", description: "Conception d'API et sécurisation des accès utilisateurs" },
             { name: "Sécurité (OWASP)", description: "Prévention des failles courantes et protection des données" },
           ],
         },
@@ -178,6 +180,20 @@ export const dictionaries: Record<Locale, Dictionary> = {
             { name: "Tests (Jest / Vitest)", description: "Tests unitaires et d'intégration pour la qualité" },
             { name: "CI/CD & Vercel", description: "Déploiement automatisé et intégration continue" },
             { name: "Figma", description: "Design d'interfaces et prototypage collaboratif" },
+            { name: "Docker", description: "Conteneurisation des applications pour garder des environnements cohérents" },
+          ],
+        },
+        {
+          id: "D",
+          code: "Language Systeme",
+          title: "Langues & systèmes",
+          description:
+            "Langages techniques et environnements système que j'utilise pour programmer, automatiser et travailler efficacement en local.",
+          items: [
+            { name: "C++", description: "Langage performant utilisé pour comprendre les bases bas niveau, les structures de données et la programmation orientée performance" },
+            { name: "C#", description: "Langage orienté objet utilisé pour développer des applications structurées avec un typage fort" },
+            { name: "Bash", description: "Shell de scripting utilisé pour automatiser des tâches, manipuler des fichiers et accélérer les workflows en terminal" },
+            { name: "Linux", description: "Système principal de développement pour le terminal, Git, Docker et l'exécution de serveurs locaux" },
           ],
         },
       ],
@@ -333,9 +349,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     skills: {
       label: "Skills",
-      title: "Skills by certification block",
+      title: "Skills by area",
       intro:
-        "My skills are organized around the three blocks of the Web Developer framework, with a self-assessed proficiency level.",
+        "My skills are organized by technical area and work environment to reflect my profile more clearly.",
       blocks: [
         {
           id: "A",
@@ -345,10 +361,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
             "Mock up an application and build static and dynamic accessible and responsive interfaces.",
           items: [
             { name: "HTML / CSS / Tailwind", description: "Structure, style and responsive design of web interfaces" },
-            { name: "JavaScript (ES2023+)", description: "Dynamic interactivity and modern client-side logic" },
+            { name: "JavaScript", description: "Core language for interactive behavior and modern client-side logic" },
             { name: "React", description: "Framework for building composable and performant interfaces" },
             { name: "TypeScript", description: "Static typing for safer and maintainable code" },
-            { name: "Accessibility (WCAG)", description: "Ensure site access for all users" },
+            { name: "Vue.js", description: "Progressive JavaScript framework for building reactive user interfaces" },
+            { name: "Node.js", description: "JavaScript runtime used across tooling, package management and full-stack workflows" },
+            { name: "Accessibility", description: "Ensures interfaces remain usable by all users, including assistive technology users" },
           ],
         },
         {
@@ -358,11 +376,14 @@ export const dictionaries: Record<Locale, Dictionary> = {
           description:
             "Create a database, build data-access components and a secure API.",
           items: [
-            { name: "Next.js (API & RSC)", description: "API routes and Server Components for integrated backend" },
+            { name: "PHP", description: "Server-side scripting language for dynamic websites, APIs and CMS-based platforms" },
             { name: "Node.js", description: "Server-side JavaScript runtime for scalable applications" },
-            { name: "SQL / PostgreSQL", description: "Relational data management and complex queries" },
-            { name: "REST & authentication", description: "API design and user access security" },
+            { name: "MySQL", description: "Relational data management and complex queries" },
+            { name: "Python", description: "Versatile language used for scripting, automation, data processing and backend services" },
             { name: "Security (OWASP)", description: "Prevention of common vulnerabilities and data protection" },
+            { name: "MongoDB", description: "NoSQL document database suited to flexible schemas and JSON-like data models" },
+            { name: "Java", description: "Object-oriented language widely used for robust backend services and enterprise applications" },
+
           ],
         },
         {
@@ -377,6 +398,20 @@ export const dictionaries: Record<Locale, Dictionary> = {
             { name: "Testing (Jest / Vitest)", description: "Unit and integration tests for quality assurance" },
             { name: "CI/CD & Vercel", description: "Automated deployment and continuous integration" },
             { name: "Figma", description: "Interface design and collaborative prototyping" },
+            { name: "Docker", description: "Containerization platform for packaging applications and keeping environments consistent" },
+          ],
+        },
+        {
+          id: "D",
+          code: "Language Systeme",
+          title: "Languages & Systems",
+          description:
+            "Technical languages and system environments I use for programming, automation and efficient local development.",
+          items: [
+            { name: "C++", description: "High-performance language used to strengthen low-level understanding, data structures and performance-oriented programming" },
+            { name: "C#", description: "Object-oriented language used to build structured applications with strong typing and clear architecture" },
+            { name: "Bash", description: "Shell scripting tool used to automate tasks, manage files and speed up terminal-based workflows" },
+            { name: "Linux", description: "Primary development system for terminal work, Git workflows, Docker and running local servers" },
           ],
         },
       ],
@@ -531,9 +566,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     skills: {
       label: "Competências",
-      title: "Competências por bloco de certificação",
+      title: "Competências por área",
       intro:
-        "As minhas competências estão organizadas segundo os três blocos do referencial de Programador Web, com um nível de domínio auto-avaliado.",
+        "As minhas competências estão organizadas por área técnica e ambiente de trabalho para refletir melhor o meu perfil.",
       blocks: [
         {
           id: "A",
@@ -546,6 +581,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
             { name: "JavaScript (ES2023+)", description: "Interatividade dinâmica e lógica moderna no cliente" },
             { name: "React", description: "Framework para construir interfaces compostas e performantes" },
             { name: "TypeScript", description: "Tipagem estática para código mais seguro e manutenível" },
+            { name: "Vue.js", description: "Framework progressivo para criar interfaces reativas e aplicações de página única" },
             { name: "Acessibilidade (WCAG)", description: "Garantir acesso do site a todos os utilizadores" },
           ],
         },
@@ -556,9 +592,10 @@ export const dictionaries: Record<Locale, Dictionary> = {
           description:
             "Criar uma base de dados, desenvolver componentes de acesso a dados e uma API segura.",
           items: [
-            { name: "Next.js (API & RSC)", description: "API routes e Server Components para backend integrado" },
             { name: "Node.js", description: "Runtime JavaScript do servidor para aplicações escaláveis" },
+            { name: "PHP", description: "Linguagem do lado do servidor usada para sites dinâmicos, APIs e plataformas CMS" },
             { name: "SQL / PostgreSQL", description: "Gestão de dados relacionais e queries complexas" },
+            { name: "MongoDB", description: "Base de dados NoSQL orientada a documentos, adequada a esquemas flexíveis" },
             { name: "REST & autenticação", description: "Design de API e proteção de acessos de utilizadores" },
             { name: "Segurança (OWASP)", description: "Prevenção de vulnerabilidades comuns e proteção de dados" },
           ],
@@ -575,6 +612,20 @@ export const dictionaries: Record<Locale, Dictionary> = {
             { name: "Testes (Jest / Vitest)", description: "Testes unitários e de integração para qualidade" },
             { name: "CI/CD & Vercel", description: "Deployment automatizado e integração contínua" },
             { name: "Figma", description: "Design de interfaces e prototipagem colaborativa" },
+            { name: "Docker", description: "Contentorização de aplicações para manter ambientes consistentes" },
+          ],
+        },
+        {
+          id: "D",
+          code: "Language Systeme",
+          title: "Idiomas & sistemas",
+          description:
+            "Linguagens técnicas e ambientes de sistema que utilizo para programar, automatizar tarefas e trabalhar com eficiência em ambiente local.",
+          items: [
+            { name: "C++", description: "Linguagem de alto desempenho usada para reforçar bases de baixo nível, estruturas de dados e programação orientada à performance" },
+            { name: "C#", description: "Linguagem orientada a objetos usada para desenvolver aplicações estruturadas com tipagem forte" },
+            { name: "Bash", description: "Shell de scripting usado para automatizar tarefas, gerir ficheiros e acelerar fluxos de trabalho no terminal" },
+            { name: "Linux", description: "Sistema principal de desenvolvimento para terminal, Git, Docker e execução de servidores locais" },
           ],
         },
       ],

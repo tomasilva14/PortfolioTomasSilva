@@ -39,7 +39,7 @@ export function Skills() {
           <SectionHeading label={t.skills.label} title={t.skills.title} intro={t.skills.intro} />
         </Reveal>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {t.skills.blocks.map((block, i) => (
             <Reveal key={block.id} delay={i * 120}>
               <div className="flex h-full flex-col rounded-xl border border-border bg-background p-5">
