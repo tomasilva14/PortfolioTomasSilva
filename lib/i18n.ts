@@ -25,6 +25,13 @@ export type SkillBlock = {
   items: { name: string; description?: string }[]
 }
 
+export type JourneyEntry = {
+  period: string
+  title: string
+  role: string
+  description: string
+}
+
 export type Dictionary = {
   meta: { title: string; description: string }
   nav: { about: string; skills: string; projects: string; journey: string; contact: string }
@@ -63,6 +70,8 @@ export type Dictionary = {
     label: string
     title: string
     intro: string
+    tabs: { work: string; studies: string }
+    tracks: { work: JourneyEntry[]; studies: JourneyEntry[] }
     steps: { period: string; title: string; description: string }[]
   }
   contact: {
@@ -257,6 +266,65 @@ export const dictionaries: Record<Locale, Dictionary> = {
       title: "Analyse de ma progression",
       intro:
         "Un regard rétrospectif sur les étapes qui ont fait évoluer mes compétences tout au long de ma formation.",
+      tabs: {
+        work: "Travail",
+        studies: "Études",
+      },
+      tracks: {
+        work: [
+          {
+            period: "Oct 2025 - Présent",
+            title: "eVISO - AI for Commodities",
+            role: "Développeur Full-Stack",
+            description:
+              "Développement de modules orientés produit pour une plateforme énergie, avec focus sur performance front-end, APIs et qualité de livraison.",
+          },
+          {
+            period: "Jan 2023 - Mar 2025",
+            title: "Digital Perspective",
+            role: "Développeur Front-End",
+            description:
+              "Création de sites web et interfaces sur mesure avec un accent sur le responsive design, WordPress et Elementor.",
+          },
+          {
+            period: "Jan 2020 - Mar 2020",
+            title: "Bitcliq",
+            role: "Développeur Logiciel (Stage)",
+            description:
+              "Participation au développement mobile et web, ainsi qu'aux tests fonctionnels sur des applications clients.",
+          },
+          {
+            period: "Avr 2019 - Juil 2019",
+            title: "Bitcliq",
+            role: "Développeur Logiciel (Stage)",
+            description:
+              "Première expérience en environnement professionnel: développement web, maintenance applicative et validation des fonctionnalités.",
+          },
+        ],
+        studies: [
+          {
+            period: "Sep 2020 - Juil 2025",
+            title: "Institut Polytechnique de Leiria",
+            role: "Licence en Génie Informatique",
+            description:
+              "Formation supérieure orientée ingénierie logicielle, architecture, bases de données et développement d'applications complètes.",
+          },
+          {
+            period: "Mar 2022 - Juil 2022",
+            title: "Université des Sciences Appliquées de Zagreb",
+            role: "Erasmus+ - Génie Informatique",
+            description:
+              "Semestre international axé sur le travail multiculturel, l'autonomie technique et les projets collaboratifs.",
+          },
+          {
+            period: "Sep 2017 - Juil 2020",
+            title: "Escola Secundária Raul Proença",
+            role: "Cours professionnel en systèmes informatiques",
+            description:
+              "Base technique solide en programmation, systèmes et administration, avec premiers projets de développement.",
+          },
+        ],
+      },
       steps: [
         {
           period: "Étape 1",
@@ -474,6 +542,65 @@ export const dictionaries: Record<Locale, Dictionary> = {
       title: "My progression analysis",
       intro:
         "A retrospective look at the milestones that grew my skills throughout my training.",
+      tabs: {
+        work: "Work",
+        studies: "Studies",
+      },
+      tracks: {
+        work: [
+          {
+            period: "Oct 2025 - Present",
+            title: "eVISO - AI for Commodities",
+            role: "Full-Stack Developer",
+            description:
+              "Building product-focused features for an energy platform with strong attention to front-end performance, API integration and delivery quality.",
+          },
+          {
+            period: "Jan 2023 - Mar 2025",
+            title: "Digital Perspective",
+            role: "Frontend Developer",
+            description:
+              "Designed and developed modern websites and client-facing interfaces with a focus on responsive UX, WordPress and Elementor.",
+          },
+          {
+            period: "Jan 2020 - Mar 2020",
+            title: "Bitcliq",
+            role: "Software Developer (Intern)",
+            description:
+              "Contributed to mobile and web development and supported functional testing for customer applications.",
+          },
+          {
+            period: "Apr 2019 - Jul 2019",
+            title: "Bitcliq",
+            role: "Software Developer (Intern)",
+            description:
+              "First professional experience building web features, validating app behaviors and collaborating with the product team.",
+          },
+        ],
+        studies: [
+          {
+            period: "Sep 2020 - Jul 2025",
+            title: "Polytechnic of Leiria",
+            role: "B.Sc. in Computer Engineering",
+            description:
+              "Academic path focused on software engineering, architecture, databases and full application development.",
+          },
+          {
+            period: "Mar 2022 - Jul 2022",
+            title: "Zagreb University of Applied Sciences",
+            role: "Erasmus+ - Computer Engineering",
+            description:
+              "International semester centered on teamwork, technical autonomy and collaborative software projects.",
+          },
+          {
+            period: "Sep 2017 - Jul 2020",
+            title: "Escola Secundária Raul Proença",
+            role: "Vocational Course in Computer Systems",
+            description:
+              "Built a strong foundation in programming, systems and practical software development.",
+          },
+        ],
+      },
       steps: [
         {
           period: "Step 1",
@@ -688,6 +815,65 @@ export const dictionaries: Record<Locale, Dictionary> = {
       title: "Análise da minha progressão",
       intro:
         "Um olhar retrospetivo sobre as etapas que fizeram crescer as minhas competências ao longo da formação.",
+      tabs: {
+        work: "Trabalho",
+        studies: "Estudos",
+      },
+      tracks: {
+        work: [
+          {
+            period: "Out 2025 - Presente",
+            title: "eVISO - AI for Commodities",
+            role: "Programador Full-Stack",
+            description:
+              "Desenvolvimento de funcionalidades orientadas ao produto para uma plataforma do setor energético, com foco em performance front-end e integração de APIs.",
+          },
+          {
+            period: "Jan 2023 - Mar 2025",
+            title: "Digital Perspective",
+            role: "Programador Front-End",
+            description:
+              "Criação de websites e interfaces modernas para clientes, com atenção à experiência responsiva, WordPress e Elementor.",
+          },
+          {
+            period: "Jan 2020 - Mar 2020",
+            title: "Bitcliq",
+            role: "Programador de Software (Estágio)",
+            description:
+              "Participação no desenvolvimento mobile e web, além de testes funcionais em aplicações para clientes.",
+          },
+          {
+            period: "Abr 2019 - Jul 2019",
+            title: "Bitcliq",
+            role: "Programador de Software (Estágio)",
+            description:
+              "Primeira experiência profissional em desenvolvimento web, validação de funcionalidades e trabalho em equipa técnica.",
+          },
+        ],
+        studies: [
+          {
+            period: "Set 2020 - Jul 2025",
+            title: "Politécnico de Leiria",
+            role: "Licenciatura em Engenharia Informática",
+            description:
+              "Percurso académico focado em engenharia de software, arquitetura, bases de dados e desenvolvimento de aplicações completas.",
+          },
+          {
+            period: "Mar 2022 - Jul 2022",
+            title: "Zagreb University of Applied Sciences",
+            role: "Erasmus+ - Engenharia Informática",
+            description:
+              "Semestre internacional com foco em colaboração multicultural, autonomia técnica e projetos de software.",
+          },
+          {
+            period: "Set 2017 - Jul 2020",
+            title: "Escola Secundária Raul Proença",
+            role: "Curso Profissional de Gestão e Programação de Sistemas",
+            description:
+              "Base sólida em programação e sistemas, com primeiros projetos práticos de desenvolvimento.",
+          },
+        ],
+      },
       steps: [
         {
           period: "Etapa 1",
