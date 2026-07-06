@@ -549,48 +549,48 @@ export const dictionaries: Record<Locale, Dictionary> = {
       tracks: {
         work: [
           {
-            period: "Oct 2025 - Present",
-            title: "eVISO - AI for Commodities",
-            role: "Full-Stack Developer",
+            period: "September 2025",
+            title: "Inetum",
+            role: "Developer IA (Intern)",
             description:
-              "Building product-focused features for an energy platform with strong attention to front-end performance, API integration and delivery quality.",
+              "Programming and teaching an AI with Python.",
           },
           {
-            period: "Jan 2023 - Mar 2025",
-            title: "Digital Perspective",
-            role: "Frontend Developer",
+            period: "April 2024",
+            title: "TRI Rhone-Alpes",
+            role: "Informatique technician",
             description:
-              "Designed and developed modern websites and client-facing interfaces with a focus on responsive UX, WordPress and Elementor.",
+              "Reparation of the students computers from the university of Grenoble Alpes.",
           },
           {
             period: "Jan 2020 - Mar 2020",
-            title: "Bitcliq",
+            title: "Innovation Makers",
             role: "Software Developer (Intern)",
             description:
-              "Contributed to mobile and web development and supported functional testing for customer applications.",
+              "Design and development of a web application for the management of studies who velontier with the school.",
           },
           {
             period: "Apr 2019 - Jul 2019",
-            title: "Bitcliq",
+            title: "Innovation Makers",
             role: "Software Developer (Intern)",
             description:
-              "First professional experience building web features, validating app behaviors and collaborating with the product team.",
+              "Development of a aplication to be able to control a machine to withdraw money",
           },
         ],
         studies: [
           {
-            period: "Sep 2020 - Jul 2025",
-            title: "Polytechnic of Leiria",
-            role: "B.Sc. in Computer Engineering",
+            period: "2025 - 27",
+            title: "WebAcademie by Epitech",
+            role: "Titre RNCP Level 5",
             description:
-              "Academic path focused on software engineering, architecture, databases and full application development.",
+              "A focused school focus on teaching how to become a Full-Stack Developer. With a strong base on PHP and teaching different ways of becoming a Full-Stack developeur with a big range of tecnologies known .",
           },
           {
-            period: "Mar 2022 - Jul 2022",
-            title: "Zagreb University of Applied Sciences",
-            role: "Erasmus+ - Computer Engineering",
+            period: "2025",
+            title: "Emlyon Business School Lyon",
+            role: "Certificate in design and web development",
             description:
-              "International semester centered on teamwork, technical autonomy and collaborative software projects.",
+              "A web development training course with a strong base on javaScript",
           },
           {
             period: "Sep 2017 - Jul 2020",
