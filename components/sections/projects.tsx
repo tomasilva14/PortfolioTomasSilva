@@ -25,6 +25,13 @@ function isVideoUrl(url: string) {
   return /\.(mp4|webm|ogg)(\?.*)?$/i.test(url)
 }
 
+function getBlockLabel(block: string) {
+  if (block === "B1") return "School"
+  if (block === "B2") return "Work"
+  if (block === "B3") return "Personnal"
+  return block
+}
+
 export function Projects() {
   const { t } = useLanguage()
   const [filter, setFilter] = useState<Filter>("all")
@@ -124,7 +131,7 @@ export function Projects() {
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
                 <span className="absolute left-3 top-3 rounded-md bg-background/90 px-2 py-1 font-mono text-xs font-semibold text-primary backdrop-blur">
-                  {project.block}
+                  {getBlockLabel(project.block)}
                 </span>
               </div>
 
@@ -179,7 +186,7 @@ export function Projects() {
           role="dialog"
         >
           <div
-            className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 text-zinc-100 shadow-2xl"
+            className="relative w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 text-zinc-100 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -191,7 +198,7 @@ export function Projects() {
               <X className="size-5" />
             </button>
 
-            <div className="relative aspect-video bg-black">
+            <div className="relative h-[52vh] min-h-85 bg-black sm:h-[58vh] lg:h-[64vh]">
               <Image
                 src={activeProject.image || "/placeholder.svg"}
                 alt={activeProject.title}
@@ -228,12 +235,37 @@ export function Projects() {
             <div className="space-y-4 p-6 sm:p-8">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="rounded-md bg-zinc-800 px-2 py-1 text-xs font-semibold text-zinc-200">
-                  {activeProject.block}
+                  {getBlockLabel(activeProject.block)}
                 </span>
                 <h3 className="text-2xl font-semibold tracking-tight">{activeProject.title}</h3>
               </div>
 
               <p className="max-w-3xl text-sm leading-relaxed text-zinc-300">{activeProject.description}</p>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={activeProject.demoUrl && activeProject.demoUrl !== "#" ? activeProject.demoUrl : undefined}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-disabled={!activeProject.demoUrl || activeProject.demoUrl === "#"}
+                  className={cn(
+                    "inline-flex items-center rounded-md px-4 py-2 text-sm font-semibold transition-colors",
+                    activeProject.demoUrl && activeProject.demoUrl !== "#"
+                      ? "bg-white text-black hover:bg-zinc-200"
+                      : "cursor-not-allowed bg-zinc-700 text-zinc-400",
+                  )}
+                >
+                  Open Website/App
+                </a>
+                <a
+                  href={activeProject.codeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center rounded-md border border-zinc-600 px-4 py-2 text-sm font-medium text-zinc-200 transition-colors hover:border-zinc-400 hover:bg-zinc-900"
+                >
+                  {t.projects.viewCode}
+                </a>
+              </div>
 
               <div className="flex flex-wrap gap-2">
                 {activeProject.tags.map((tag) => (
