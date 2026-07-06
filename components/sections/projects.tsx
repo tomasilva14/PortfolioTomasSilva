@@ -1,21 +1,73 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
-import { ArrowUpRight, Code2 } from "lucide-react"
+import { Code2, X } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
+import type { Project } from "@/lib/i18n"
 import { cn } from "@/lib/utils"
 
 const FILTERS = ["all", "B1", "B2", "B3"] as const
 type Filter = (typeof FILTERS)[number]
 
+const FILTER_LABELS: Record<Filter, string> = {
+  all: "ALL",
+  B1: "School",
+  B2: "Work",
+  B3: "Personnal",
+}
+
+const FALLBACK_DEMO_VIDEO = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+
+function isVideoUrl(url: string) {
+  return /\.(mp4|webm|ogg)(\?.*)?$/i.test(url)
+}
+
 export function Projects() {
   const { t } = useLanguage()
   const [filter, setFilter] = useState<Filter>("all")
+  const [activeProject, setActiveProject] = useState<Project | null>(null)
 
   const visible = t.projects.items.filter((p) => filter === "all" || p.block === filter)
+
+  const demoSource = useMemo(() => {
+    if (!activeProject) {
+      return null
+    }
+
+    if (!activeProject.demoUrl || activeProject.demoUrl === "#") {
+      return { type: "video" as const, src: FALLBACK_DEMO_VIDEO }
+    }
+
+    if (isVideoUrl(activeProject.demoUrl)) {
+      return { type: "video" as const, src: activeProject.demoUrl }
+    }
+
+    return { type: "embed" as const, src: activeProject.demoUrl }
+  }, [activeProject])
+
+  useEffect(() => {
+    if (!activeProject) {
+      return
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveProject(null)
+      }
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    window.addEventListener("keydown", onKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener("keydown", onKeyDown)
+    }
+  }, [activeProject])
 
   return (
     <section id="projects" className="mx-auto max-w-5xl scroll-mt-20 px-5 py-20 sm:px-8">
@@ -42,7 +94,7 @@ export function Projects() {
                   : "border-border bg-card text-muted-foreground hover:text-foreground",
               )}
             >
-              {f === "all" ? "*" : f}
+              {FILTER_LABELS[f]}
             </button>
           ))}
         </div>
@@ -51,7 +103,18 @@ export function Projects() {
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
         {visible.map((project, i) => (
           <Reveal key={project.id} delay={(i % 2) * 100}>
-            <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/50">
+            <article
+              role="button"
+              tabIndex={0}
+              onClick={() => setActiveProject(project)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault()
+                  setActiveProject(project)
+                }
+              }}
+              className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/50"
+            >
               <div className="relative aspect-16/10 overflow-hidden border-b border-border bg-secondary">
                 <Image
                   src={project.image || "/placeholder.svg"}
@@ -83,15 +146,19 @@ export function Projects() {
                 </div>
 
                 <div className="mt-5 flex items-center gap-4">
-                  <a
-                    href={project.demoUrl}
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation()
+                      setActiveProject(project)
+                    }}
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-primary"
                   >
                     {t.projects.viewDemo}
-                    <ArrowUpRight className="size-4" />
-                  </a>
+                  </button>
                   <a
                     href={project.codeUrl}
+                    onClick={(event) => event.stopPropagation()}
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
                   >
                     <Code2 className="size-4" />
@@ -103,6 +170,82 @@ export function Projects() {
           </Reveal>
         ))}
       </div>
+
+      {activeProject && demoSource ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          onClick={() => setActiveProject(null)}
+          aria-modal="true"
+          role="dialog"
+        >
+          <div
+            className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 text-zinc-100 shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setActiveProject(null)}
+              className="absolute right-4 top-4 z-20 inline-flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/70 text-zinc-100 transition-colors hover:bg-black"
+              aria-label="Close demo"
+            >
+              <X className="size-5" />
+            </button>
+
+            <div className="relative aspect-video bg-black">
+              <Image
+                src={activeProject.image || "/placeholder.svg"}
+                alt={activeProject.title}
+                fill
+                sizes="100vw"
+                className="object-cover opacity-35"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/50 to-transparent" />
+
+              <div className="absolute inset-0 z-10">
+                {demoSource.type === "video" ? (
+                  <video
+                    key={demoSource.src}
+                    src={demoSource.src}
+                    poster={activeProject.image || "/placeholder.svg"}
+                    controls
+                    autoPlay
+                    muted
+                    playsInline
+                    className="size-full object-cover"
+                  />
+                ) : (
+                  <iframe
+                    src={demoSource.src}
+                    title={`${activeProject.title} demo`}
+                    className="size-full"
+                    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                    allowFullScreen
+                  />
+                )}
+              </div>
+            </div>
+
+            <div className="space-y-4 p-6 sm:p-8">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="rounded-md bg-zinc-800 px-2 py-1 text-xs font-semibold text-zinc-200">
+                  {activeProject.block}
+                </span>
+                <h3 className="text-2xl font-semibold tracking-tight">{activeProject.title}</h3>
+              </div>
+
+              <p className="max-w-3xl text-sm leading-relaxed text-zinc-300">{activeProject.description}</p>
+
+              <div className="flex flex-wrap gap-2">
+                {activeProject.tags.map((tag) => (
+                  <span key={tag} className="rounded-md bg-zinc-800/90 px-2.5 py-1 text-xs text-zinc-300">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }

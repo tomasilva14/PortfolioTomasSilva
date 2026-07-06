@@ -419,7 +419,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     projects: {
       label: "Projects",
       title: "A selection of my work",
-      intro: "Each project is tied to a competency block to illustrate my progression.",
+      intro: "Here you can find more about my work. Projects i've done before.",
       viewDemo: "Demo",
       viewCode: "Code",
       items: [
