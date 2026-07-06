@@ -52,7 +52,7 @@ export function Projects() {
         {visible.map((project, i) => (
           <Reveal key={project.id} delay={(i % 2) * 100}>
             <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/50">
-              <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-secondary">
+              <div className="relative aspect-16/10 overflow-hidden border-b border-border bg-secondary">
                 <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}

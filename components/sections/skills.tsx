@@ -1,25 +1,37 @@
 "use client"
 
-import type { LucideIcon } from "lucide-react"
+import { Code2, Shield, Workflow } from "lucide-react"
+import type { CSSProperties } from "react"
+import type { IconType } from "react-icons"
 import {
-  Accessibility,
-  Atom,
-  Boxes,
-  Braces,
-  Code2,
-  Database,
-  Figma,
-  GitBranch,
-  Layers3,
-  LayoutGrid,
-  Rocket,
-  Server,
-  Shield,
-  TerminalSquare,
-  TestTube2,
-  Workflow,
-  type LucideProps,
-} from "lucide-react"
+  SiCplusplus,
+  SiCss,
+  SiDocker,
+  SiFigma,
+  SiGit,
+  SiGithub,
+  SiGnubash,
+  SiHtml5,
+  SiJavascript,
+  SiJest,
+  SiLinux,
+  SiMongodb,
+  SiMysql,
+  SiNodedotjs,
+  SiOpenaccess,
+  SiOpenjdk,
+  SiOwasp,
+  SiPhp,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiSharp,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
+  SiVuedotjs,
+  SiVitest,
+} from "react-icons/si"
 import { useLanguage } from "@/components/language-provider"
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
@@ -39,34 +51,46 @@ function normalizeSkillName(name: string) {
   return name.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
 }
 
-function getSkillIcon(name: string): LucideIcon {
+function getSkillIcons(name: string): IconType[] {
   const normalized = normalizeSkillName(name)
 
-  if (normalized.includes("html") || normalized.includes("css") || normalized.includes("tailwind")) return LayoutGrid
-  if (normalized.includes("javascript") || normalized === "bash") return Braces
-  if (normalized.includes("react")) return Atom
-  if (normalized.includes("typescript")) return Code2
-  if (normalized.includes("vue")) return Layers3
-  if (normalized.includes("accessibil")) return Accessibility
-  if (normalized.includes("node.js") || normalized === "nodejs") return Server
-  if (normalized.includes("php")) return Code2
-  if (normalized.includes("sql") || normalized.includes("postgres") || normalized.includes("mysql") || normalized.includes("mongodb")) return Database
-  if (normalized.includes("rest") || normalized.includes("authent")) return Shield
-  if (normalized.includes("security") || normalized.includes("securit") || normalized.includes("owasp")) return Shield
-  if (normalized.includes("git") || normalized.includes("github")) return GitBranch
-  if (normalized.includes("agile") || normalized.includes("scrum") || normalized.includes("method")) return Workflow
-  if (normalized.includes("test")) return TestTube2
-  if (normalized.includes("cicd") || normalized.includes("vercel")) return Rocket
-  if (normalized.includes("figma")) return Figma
-  if (normalized.includes("docker")) return Boxes
-  if (normalized.includes("c++")) return Code2
-  if (normalized.includes("c#")) return Code2
-  if (normalized.includes("linux")) return TerminalSquare
-  return Code2
+  if (normalized.includes("html") || normalized.includes("css") || normalized.includes("tailwind")) {
+    return [SiHtml5, SiCss, SiTailwindcss]
+  }
+
+  if (normalized.includes("javascript")) return [SiJavascript]
+  if (normalized.includes("react")) return [SiReact]
+  if (normalized.includes("typescript")) return [SiTypescript]
+  if (normalized.includes("vue")) return [SiVuedotjs]
+  if (normalized.includes("accessibil")) return [SiOpenaccess]
+
+  if (normalized.includes("node.js") || normalized === "nodejs") return [SiNodedotjs]
+  if (normalized.includes("php")) return [SiPhp]
+  if (normalized.includes("sql") || normalized.includes("postgres")) return [SiPostgresql]
+  if (normalized.includes("mysql")) return [SiMysql]
+  if (normalized.includes("mongodb")) return [SiMongodb]
+  if (normalized.includes("python")) return [SiPython]
+  if (normalized.includes("java")) return [SiOpenjdk]
+
+  if (normalized.includes("rest") || normalized.includes("authent")) return [Shield]
+  if (normalized.includes("security") || normalized.includes("securit") || normalized.includes("owasp")) return [SiOwasp]
+
+  if (normalized.includes("git") || normalized.includes("github")) return normalized.includes("github") ? [SiGithub, SiGit] : [SiGit]
+  if (normalized.includes("agile") || normalized.includes("scrum") || normalized.includes("method")) return [Workflow]
+  if (normalized.includes("test")) return [SiJest, SiVitest]
+  if (normalized.includes("cicd") || normalized.includes("vercel")) return [SiVercel]
+  if (normalized.includes("figma")) return [SiFigma]
+  if (normalized.includes("docker")) return [SiDocker]
+  if (normalized.includes("c++")) return [SiCplusplus]
+  if (normalized.includes("c#") || normalized.includes("sharp")) return [SiSharp]
+  if (normalized.includes("bash")) return [SiGnubash]
+  if (normalized.includes("linux")) return [SiLinux]
+
+  return [Code2]
 }
 
 function SkillCard({ name, description }: SkillItem) {
-  const Icon = getSkillIcon(name)
+  const icons = getSkillIcons(name)
 
   return (
     <div
@@ -74,8 +98,19 @@ function SkillCard({ name, description }: SkillItem) {
       aria-label={description ? `${name}: ${description}` : name}
       className="flex w-68 shrink-0 items-start gap-3 rounded-2xl border border-border bg-card px-4 py-3 shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:border-primary/50"
     >
-      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-        <Icon className="size-5" />
+      <span
+        className={cn(
+          "inline-flex h-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary",
+          icons.length > 1 ? "min-w-12 gap-1 px-2" : "min-w-10 px-0"
+        )}
+      >
+        {icons.map((Icon, index) => (
+          <Icon
+            key={`${name}-${index}`}
+            className={cn("shrink-0", icons.length > 1 ? "size-4" : "size-5")}
+            aria-hidden="true"
+          />
+        ))}
       </span>
       <div className="min-w-0">
         <div className="text-sm font-semibold text-foreground">{name}</div>
@@ -105,7 +140,7 @@ function SkillMarquee({ lane }: { lane: SkillLane }) {
       <div className="skills-marquee overflow-hidden rounded-2xl">
         <div
           className={cn("skills-marquee-track", lane.reverse && "skills-marquee-reverse")}
-          style={{ ["--skills-marquee-duration" as string]: lane.duration } as React.CSSProperties}
+          style={{ ["--skills-marquee-duration" as string]: lane.duration } as CSSProperties}
         >
           <div className="skills-marquee-group">
             {lane.items.map((item) => (
