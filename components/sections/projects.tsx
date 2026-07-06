@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
-import { Code2, X } from "lucide-react"
+import { X } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
@@ -163,14 +163,6 @@ export function Projects() {
                   >
                     {t.projects.viewDemo}
                   </button>
-                  <a
-                    href={project.codeUrl}
-                    onClick={(event) => event.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    <Code2 className="size-4" />
-                    {t.projects.viewCode}
-                  </a>
                 </div>
               </div>
             </article>
@@ -242,7 +234,7 @@ export function Projects() {
 
               <p className="max-w-3xl text-sm leading-relaxed text-zinc-300">{activeProject.description}</p>
 
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center justify-end">
                 <a
                   href={activeProject.demoUrl && activeProject.demoUrl !== "#" ? activeProject.demoUrl : undefined}
                   target="_blank"
@@ -256,14 +248,6 @@ export function Projects() {
                   )}
                 >
                   Open Website/App
-                </a>
-                <a
-                  href={activeProject.codeUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center rounded-md border border-zinc-600 px-4 py-2 text-sm font-medium text-zinc-200 transition-colors hover:border-zinc-400 hover:bg-zinc-900"
-                >
-                  {t.projects.viewCode}
                 </a>
               </div>
 
