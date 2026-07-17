@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import Image from "next/image"
 import { X } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
@@ -55,6 +55,8 @@ export function Projects() {
     return { type: "embed" as const, src: activeProject.demoUrl }
   }, [activeProject])
 
+  const demoVideoRef = useRef<HTMLVideoElement | null>(null)
+
   useEffect(() => {
     if (!activeProject) {
       return
@@ -75,6 +77,24 @@ export function Projects() {
       window.removeEventListener("keydown", onKeyDown)
     }
   }, [activeProject])
+
+  useEffect(() => {
+    const video = demoVideoRef.current
+    if (!video) return
+
+    video.currentTime = 0
+    const interval = window.setInterval(() => {
+      if (video.paused || video.ended) return
+      const nextTime = video.currentTime + 0.05
+      if (nextTime < video.duration) {
+        video.currentTime = nextTime
+      } else {
+        video.currentTime = 0
+      }
+    }, 100)
+
+    return () => window.clearInterval(interval)
+  }, [demoSource])
 
   return (
     <section id="projects" className="mx-auto max-w-5xl scroll-mt-20 px-5 py-20 sm:px-8">
