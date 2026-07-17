@@ -517,7 +517,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
           id: "p3",
           title: "Weather app",
           description:
-            "Responsive weather dashboard consuming an external API, with charts and geolocation.",
+            "Responsive  dashboard consuming an external API, with charts and geolocation.",
           image: projectImages.weather,
           tags: ["React", "REST API", "Recharts"],
           block: "B1",
