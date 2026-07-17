@@ -5,97 +5,97 @@ export const LOCALES: { code: Locale; label: string }[] = [
   { code: "en", label: "EN" },
   { code: "pt", label: "PT" },
 ]
-
-export type Project = {
-  id: string
-  title: string
-  description: string
-  image: string
-  tags: string[]
-  block: string
-  demoUrl: string
-  codeUrl: string
-}
-
-export type SkillBlock = {
-  id: "A" | "B" | "C" | "D"
-  code: string
-  title: string
-  description: string
-  items: { name: string; description?: string }[]
-}
-
-export type JourneyEntry = {
-  period: string
-  title: string
-  role: string
-  description: string
-}
-
-export type Dictionary = {
-  meta: { title: string; description: string }
-  nav: { about: string; skills: string; projects: string; journey: string; contact: string }
-  hero: {
-    role: string
-    greeting: string
-    name: string
-    tagline: string
-    intro: string
-    cvButton: string
-    contactButton: string
-    available: string
-  }
-  about: {
-    label: string
-    title: string
-    paragraphs: string[]
-    factsTitle: string
-    facts: { label: string; value: string }[]
-  }
-  skills: {
-    label: string
-    title: string
-    intro: string
-    blocks: SkillBlock[]
-  }
-  projects: {
-    label: string
-    title: string
-    intro: string
-    viewDemo: string
-    viewCode: string
-    items: Project[]
-  }
-  journey: {
-    label: string
-    title: string
-    intro: string
-    tabs: { work: string; studies: string }
-    tracks: { work: JourneyEntry[]; studies: JourneyEntry[] }
-    steps: { period: string; title: string; description: string }[]
-  }
-  contact: {
-    label: string
-    title: string
-    intro: string
-    nameLabel: string
-    emailLabel: string
-    messageLabel: string
-    namePlaceholder: string
-    emailPlaceholder: string
-    messagePlaceholder: string
-    send: string
-    sending: string
-    success: string
-    error: string
-    directEmail: string
-  }
-  footer: { built: string; rights: string }
-}
-
-const projectImages = {
-  ecommerce: "/project-ecommerce.png",
-  tasks: "/project-tasks.png",
+    journey: {
+      label: "Percurso",
+      title: "Minha análise de progressão",
+      intro:
+        "Um olhar retrospetivo sobre os marcos que fizeram crescer as minhas competências ao longo da formação.",
+      tabs: {
+        work: "Trabalho",
+        studies: "Estudos",
+      },
+      tracks: {
+        work: [
+          {
+            period: "Setembro 2025",
+            title: "Inetum",
+            role: "Desenvolvedor IA (Estágio)",
+            description:
+              "Programação e treino de uma IA com Python.",
+          },
+          {
+            period: "Abril 2024",
+            title: "TRI Rhone-Alpes",
+            role: "Técnico Informático",
+            description:
+              "Reparação dos computadores dos estudantes da Université Grenoble Alpes.",
+          },
+          {
+            period: "Jan 2020 - Mar 2020",
+            title: "Innovation Makers",
+            role: "Desenvolvedor de Software (Estágio)",
+            description:
+              "Conceção e desenvolvimento de uma aplicação web para a gestão de estudos em colaboração com a escola.",
+          },
+          {
+            period: "Abr 2019 - Jul 2019",
+            title: "Innovation Makers",
+            role: "Desenvolvedor de Software (Estágio)",
+            description:
+              "Desenvolvimento de uma aplicação para controlar uma máquina de levantamento de dinheiro.",
+          },
+        ],
+        studies: [
+          {
+            period: "2025 - 27",
+            title: "WebAcademie by Epitech",
+            role: "Título RNCP Nível 5",
+            description:
+              "Escola focada na formação de desenvolvedores Full-Stack, com forte base em PHP e várias tecnologias.",
+          },
+          {
+            period: "2025",
+            title: "Emlyon Business School Lyon",
+            role: "Certificado em design e desenvolvimento web",
+            description:
+              "Formação em desenvolvimento web com forte base em JavaScript.",
+          },
+          {
+            period: "Set 2017 - Jul 2020",
+            title: "Escola Secundária Raul Proença",
+            role: "Curso Profissional em Sistemas Informáticos",
+            description:
+              "Base sólida em programação, sistemas e desenvolvimento de software prático.",
+          },
+        ],
+      },
+      steps: [
+        {
+          period: "Passo 1",
+          title: "As fundações",
+          description:
+            "Aprendizagem de HTML, CSS e JavaScript. Primeiras páginas estáticas e compreensão do DOM e acessibilidade.",
+        },
+        {
+          period: "Passo 2",
+          title: "Front-end moderno",
+          description:
+            "Aprofundamento em React e TypeScript. Construção de UIs componentizadas, gestão de estado e consumo de APIs.",
+        },
+        {
+          period: "Passo 3",
+          title: "Tornando-me full-stack",
+          description:
+            "Desenho de bases de dados, construção de APIs seguras e integração back-end com Next.js.",
+        },
+        {
+          period: "Passo 4",
+          title: "Profissionalização",
+          description:
+            "Testes, integração contínua, deployment e trabalho ágil em projetos reais.",
+        },
+      ],
+    },
   weather: "/project-weather.png",
   blog: "/project-blog.png",
 }
@@ -263,7 +263,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     journey: {
       label: "Parcours",
-      title: "Analyse de ma progression",
+      title: "Mon analyse de progression",
       intro:
         "Un regard rétrospectif sur les étapes qui ont fait évoluer mes compétences tout au long de ma formation.",
       tabs: {
@@ -273,55 +273,55 @@ export const dictionaries: Record<Locale, Dictionary> = {
       tracks: {
         work: [
           {
-            period: "Oct 2025 - Présent",
-            title: "eVISO - AI for Commodities",
-            role: "Développeur Full-Stack",
+            period: "Septembre 2025",
+            title: "Inetum",
+            role: "Développeur IA (Stagiaire)",
             description:
-              "Développement de modules orientés produit pour une plateforme énergie, avec focus sur performance front-end, APIs et qualité de livraison.",
+              "Programmation et entraînement d'une IA avec Python.",
           },
           {
-            period: "Jan 2023 - Mar 2025",
-            title: "Digital Perspective",
-            role: "Développeur Front-End",
+            period: "Avril 2024",
+            title: "TRI Rhone-Alpes",
+            role: "Technicien informatique",
             description:
-              "Création de sites web et interfaces sur mesure avec un accent sur le responsive design, WordPress et Elementor.",
+              "Réparation des ordinateurs des étudiants de l'université Grenoble Alpes.",
           },
           {
             period: "Jan 2020 - Mar 2020",
-            title: "Bitcliq",
-            role: "Développeur Logiciel (Stage)",
+            title: "Innovation Makers",
+            role: "Développeur logiciel (Stage)",
             description:
-              "Participation au développement mobile et web, ainsi qu'aux tests fonctionnels sur des applications clients.",
+              "Conception et développement d'une application web pour la gestion des études en collaboration avec l'école.",
           },
           {
             period: "Avr 2019 - Juil 2019",
-            title: "Bitcliq",
-            role: "Développeur Logiciel (Stage)",
+            title: "Innovation Makers",
+            role: "Développeur logiciel (Stage)",
             description:
-              "Première expérience en environnement professionnel: développement web, maintenance applicative et validation des fonctionnalités.",
+              "Développement d'une application permettant de contrôler une machine de retrait d'argent.",
           },
         ],
         studies: [
           {
-            period: "Sep 2020 - Juil 2025",
-            title: "Institut Polytechnique de Leiria",
-            role: "Licence en Génie Informatique",
+            period: "2025 - 27",
+            title: "WebAcademie by Epitech",
+            role: "Titre RNCP Niveau 5",
             description:
-              "Formation supérieure orientée ingénierie logicielle, architecture, bases de données et développement d'applications complètes.",
+              "École axée sur la formation de développeurs Full-Stack, avec une base solide en PHP et plusieurs technologies.",
           },
           {
-            period: "Mar 2022 - Juil 2022",
-            title: "Université des Sciences Appliquées de Zagreb",
-            role: "Erasmus+ - Génie Informatique",
+            period: "2025",
+            title: "Emlyon Business School Lyon",
+            role: "Certificat en design et développement web",
             description:
-              "Semestre international axé sur le travail multiculturel, l'autonomie technique et les projets collaboratifs.",
+              "Formation en développement web avec une forte base en JavaScript.",
           },
           {
-            period: "Sep 2017 - Juil 2020",
+            period: "Sep 2017 - Jul 2020",
             title: "Escola Secundária Raul Proença",
             role: "Cours professionnel en systèmes informatiques",
             description:
-              "Base technique solide en programmation, systèmes et administration, avec premiers projets de développement.",
+              "Base solide en programmation, systèmes et développement logiciel pratique.",
           },
         ],
       },

@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
 import { LanguageProvider } from "@/components/language-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -78,7 +77,6 @@ export default function Page() {
     <LanguageProvider>
       <SiteHeader />
       <main>
-        <AutoScrollDemo />
         <Hero />
         <About />
         <Skills />

@@ -55,7 +55,7 @@ export function Projects() {
     return { type: "embed" as const, src: activeProject.demoUrl }
   }, [activeProject])
 
-  const demoVideoRef = useRef<HTMLVideoElement | null>(null)
+  const detailsRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (!activeProject) {
@@ -79,22 +79,49 @@ export function Projects() {
   }, [activeProject])
 
   useEffect(() => {
-    const video = demoVideoRef.current
-    if (!video) return
+    if (!activeProject) return
 
-    video.currentTime = 0
+    const el = detailsRef.current
+    if (!el) return
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    let stopped = false
+    const stop = () => {
+      stopped = true
+    }
+
+    const onUserInput = () => stop()
+
+    window.addEventListener("wheel", onUserInput, { passive: true })
+    window.addEventListener("touchstart", onUserInput, { passive: true })
+    window.addEventListener("keydown", onUserInput)
+    window.addEventListener("pointerdown", onUserInput)
+
+    el.scrollTop = 0
     const interval = window.setInterval(() => {
-      if (video.paused || video.ended) return
-      const nextTime = video.currentTime + 0.05
-      if (nextTime < video.duration) {
-        video.currentTime = nextTime
-      } else {
-        video.currentTime = 0
+      if (stopped) return
+      const max = el.scrollHeight - el.clientHeight
+      if (max <= 0) {
+        stop()
+        return
       }
-    }, 100)
+      if (el.scrollTop >= max - 1) {
+        stop()
+        return
+      }
+      el.scrollTop = Math.min(el.scrollTop + 1, max)
+    }, 80)
 
-    return () => window.clearInterval(interval)
-  }, [demoSource])
+    return () => {
+      stopped = true
+      window.clearInterval(interval)
+      window.removeEventListener("wheel", onUserInput)
+      window.removeEventListener("touchstart", onUserInput)
+      window.removeEventListener("keydown", onUserInput)
+      window.removeEventListener("pointerdown", onUserInput)
+    }
+  }, [activeProject])
 
   return (
     <section id="projects" className="mx-auto max-w-5xl scroll-mt-20 px-5 py-20 sm:px-8">
@@ -244,7 +271,7 @@ export function Projects() {
               </div>
             </div>
 
-            <div className="space-y-4 p-6 sm:p-8">
+            <div ref={detailsRef} className="space-y-4 p-6 sm:p-8 max-h-[36vh] overflow-y-auto">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="rounded-md bg-zinc-800 px-2 py-1 text-xs font-semibold text-zinc-200">
                   {getBlockLabel(activeProject.block)}
