@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { LanguageProvider } from "@/components/language-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
