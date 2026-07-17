@@ -100,7 +100,282 @@ const projectImages = {
   blog: "/project-blog.png",
 }
 
-const englishDictionary: Dictionary = {
+export const dictionaries: Record<Locale, Dictionary> = {
+  fr: {
+    meta: {
+      title: "Tomas Silva — Développeur Web",
+      description:
+        "Portfolio d'Tomas Silva, développeur web spécialisé en React, TypeScript et Next.js. Projets, compétences et parcours.",
+    },
+    nav: {
+      about: "À propos",
+      skills: "Compétences",
+      projects: "Projets",
+      journey: "Parcours",
+      contact: "Contact",
+    },
+    hero: {
+      role: "Développeur Web Full-Stack",
+      greeting: "Bonjour, je suis",
+      name: "Tomas Silva",
+      tagline: "Je conçois et développe des applications web accessibles et performantes.",
+      intro:
+        "Développeur web junior diplômé, passionné par l'écosystème JavaScript moderne. Je transforme des maquettes en interfaces soignées avec React, TypeScript et Next.js.",
+      cvButton: "Télécharger le CV",
+      contactButton: "Me contacter",
+      available: "Disponible pour de nouvelles opportunités",
+    },
+    about: {
+      label: "À propos",
+      title: "Un développeur attentif au détail et à l'utilisateur",
+      paragraphs: [
+        "Je suis un développeur web orienté front-end qui aime travailler à l'intersection du design et du code. Mon objectif : livrer des interfaces qui sont non seulement belles, mais aussi accessibles, rapides et maintenables.",
+        "Au cours de ma formation, j'ai conçu plusieurs applications complètes, de la maquette à la mise en production, en appliquant les bonnes pratiques d'accessibilité (RGAA/WCAG), de sécurité et de performance.",
+        "En dehors du code, j'aime explorer de nouveaux outils, contribuer à des projets open-source et partager ce que j'apprends.",
+      ],
+      factsTitle: "En bref",
+      facts: [
+        { label: "Localisation", value: "Paris, France" },
+        { label: "Expérience", value: "Projets de formation + freelance" },
+        { label: "Langues", value: "Français, Anglais, Portugais" },
+        { label: "Centres d'intérêt", value: "UX, open-source, typographie" },
+      ],
+    },
+    skills: {
+      label: "Compétences",
+      title: "Compétences par domaine",
+      intro:
+        "Mes compétences sont organisées par domaines techniques et outils de travail afin de refléter plus précisément mon profil.",
+      blocks: [
+        {
+          id: "A",
+          code: "Bloc 1",
+          title: "Développer la partie front-end",
+          description:
+            "Maquetter une application, réaliser des interfaces statiques et dynamiques accessibles et responsives.",
+          items: [
+            { name: "HTML / CSS / Tailwind", description: "Structure, style et design responsive des interfaces web" },
+            { name: "JavaScript (ES2023+)", description: "Interactivité dynamique et logique client modernes" },
+            { name: "React", description: "Framework pour construire des interfaces composables et performantes" },
+            { name: "TypeScript", description: "Typage statique pour un code plus sûr et maintenable" },
+            { name: "Vue.js", description: "Framework progressif pour créer des interfaces réactives et des applications monopage" },
+            { name: "Accessibilité (WCAG)", description: "Garantir l'accès du site à tous les utilisateurs" },
+          ],
+        },
+        {
+          id: "B",
+          code: "Bloc 2",
+          title: "Développer la partie back-end",
+          description:
+            "Créer une base de données, développer des composants d'accès aux données et une API sécurisée.",
+          items: [
+            { name: "Node.js", description: "Runtime JavaScript côté serveur pour applications scalables" },
+            { name: "PHP", description: "Langage côté serveur utilisé pour développer des sites dynamiques, des API et des CMS" },
+            { name: "SQL / PostgreSQL", description: "Gestion des données relationnelles et requêtes complexes" },
+            { name: "MongoDB", description: "Base de données NoSQL orientée documents, adaptée aux schémas flexibles" },
+            { name: "REST & authentification", description: "Conception d'API et sécurisation des accès utilisateurs" },
+            { name: "Sécurité (OWASP)", description: "Prévention des failles courantes et protection des données" },
+          ],
+        },
+        {
+          id: "C",
+          code: "Bloc 3",
+          title: "Outils, méthodes & déploiement",
+          description:
+            "Collaborer en équipe, versionner le code, tester et déployer une application en continu.",
+          items: [
+            { name: "Git / GitHub", description: "Versioning et collaboration sur le code source" },
+            { name: "Méthodes agiles", description: "Organisation itérative et livraison rapide" },
+            { name: "Tests (Jest / Vitest)", description: "Tests unitaires et d'intégration pour la qualité" },
+            { name: "CI/CD & Vercel", description: "Déploiement automatisé et intégration continue" },
+            { name: "Figma", description: "Design d'interfaces et prototypage collaboratif" },
+            { name: "Docker", description: "Conteneurisation des applications pour garder des environnements cohérents" },
+          ],
+        },
+        {
+          id: "D",
+          code: "Language Systeme",
+          title: "Langues & systèmes",
+          description:
+            "Langages techniques et environnements système que j'utilise pour programmer, automatiser et travailler efficacement en local.",
+          items: [
+            { name: "C++", description: "Langage performant utilisé pour comprendre les bases bas niveau, les structures de données et la programmation orientée performance" },
+            { name: "C#", description: "Langage orienté objet utilisé pour développer des applications structurées avec un typage fort" },
+            { name: "Bash", description: "Shell de scripting utilisé pour automatiser des tâches, manipuler des fichiers et accélérer les workflows en terminal" },
+            { name: "Linux", description: "Système principal de développement pour le terminal, Git, Docker et l'exécution de serveurs locaux" },
+          ],
+        },
+      ],
+    },
+    projects: {
+      label: "Projets",
+      title: "Une sélection de mes réalisations",
+      intro:
+        "Chaque projet est rattaché à un bloc de compétences pour illustrer ma progression.",
+      viewDemo: "Démo",
+      viewCode: "Code",
+      items: [
+        {
+          id: "p1",
+          title: "Boutique e-commerce",
+          description:
+            "Plateforme e-commerce complète avec panier, paiement et tableau de bord administrateur, construite en Next.js.",
+          image: projectImages.ecommerce,
+          tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
+          block: "B2",
+          demoUrl: "#",
+          codeUrl: "#",
+        },
+        {
+          id: "p2",
+          title: "Gestionnaire de tâches",
+          description:
+            "Application Kanban en temps réel avec glisser-déposer, collaboration et synchronisation.",
+          image: projectImages.tasks,
+          tags: ["React", "TypeScript", "Tailwind"],
+          block: "B1",
+          demoUrl: "#",
+          codeUrl: "#",
+        },
+        {
+          id: "p3",
+          title: "Application météo",
+          description:
+            "Tableau de bord météo responsive consommant une API externe, avec graphiques et géolocalisation.",
+          image: projectImages.weather,
+          tags: ["React", "API REST", "Recharts"],
+          block: "B1",
+          demoUrl: "#",
+          codeUrl: "#",
+        },
+        {
+          id: "p4",
+          title: "CMS de blog",
+          description:
+            "Système de gestion de contenu avec éditeur Markdown, authentification et déploiement continu.",
+          image: projectImages.blog,
+          tags: ["Next.js", "Node.js", "CI/CD"],
+          block: "B3",
+          demoUrl: "#",
+          codeUrl: "#",
+        },
+      ],
+    },
+    journey: {
+      label: "Parcours",
+      title: "Analyse de ma progression",
+      intro:
+        "Un regard rétrospectif sur les étapes qui ont fait évoluer mes compétences tout au long de ma formation.",
+      tabs: {
+        work: "Travail",
+        studies: "Études",
+      },
+      tracks: {
+        work: [
+          {
+            period: "Oct 2025 - Présent",
+            title: "eVISO - AI for Commodities",
+            role: "Développeur Full-Stack",
+            description:
+              "Développement de modules orientés produit pour une plateforme énergie, avec focus sur performance front-end, APIs et qualité de livraison.",
+          },
+          {
+            period: "Jan 2023 - Mar 2025",
+            title: "Digital Perspective",
+            role: "Développeur Front-End",
+            description:
+              "Création de sites web et interfaces sur mesure avec un accent sur le responsive design, WordPress et Elementor.",
+          },
+          {
+            period: "Jan 2020 - Mar 2020",
+            title: "Bitcliq",
+            role: "Développeur Logiciel (Stage)",
+            description:
+              "Participation au développement mobile et web, ainsi qu'aux tests fonctionnels sur des applications clients.",
+          },
+          {
+            period: "Avr 2019 - Juil 2019",
+            title: "Bitcliq",
+            role: "Développeur Logiciel (Stage)",
+            description:
+              "Première expérience en environnement professionnel: développement web, maintenance applicative et validation des fonctionnalités.",
+          },
+        ],
+        studies: [
+          {
+            period: "Sep 2020 - Juil 2025",
+            title: "Institut Polytechnique de Leiria",
+            role: "Licence en Génie Informatique",
+            description:
+              "Formation supérieure orientée ingénierie logicielle, architecture, bases de données et développement d'applications complètes.",
+          },
+          {
+            period: "Mar 2022 - Juil 2022",
+            title: "Université des Sciences Appliquées de Zagreb",
+            role: "Erasmus+ - Génie Informatique",
+            description:
+              "Semestre international axé sur le travail multiculturel, l'autonomie technique et les projets collaboratifs.",
+          },
+          {
+            period: "Sep 2017 - Juil 2020",
+            title: "Escola Secundária Raul Proença",
+            role: "Cours professionnel en systèmes informatiques",
+            description:
+              "Base technique solide en programmation, systèmes et administration, avec premiers projets de développement.",
+          },
+        ],
+      },
+      steps: [
+        {
+          period: "Étape 1",
+          title: "Les fondations",
+          description:
+            "Apprentissage du HTML, CSS et JavaScript. Premières pages statiques et compréhension du DOM et de l'accessibilité.",
+        },
+        {
+          period: "Étape 2",
+          title: "Le front-end moderne",
+          description:
+            "Montée en compétence sur React et TypeScript. Création d'interfaces componentisées, gestion d'état et consommation d'API.",
+        },
+        {
+          period: "Étape 3",
+          title: "Le full-stack",
+          description:
+            "Conception de bases de données, développement d'API sécurisées et intégration back-end avec Next.js.",
+        },
+        {
+          period: "Étape 4",
+          title: "Professionnalisation",
+          description:
+            "Tests, intégration continue, déploiement et travail en méthode agile sur des projets concrets.",
+        },
+      ],
+    },
+    contact: {
+      label: "Contact",
+      title: "Travaillons ensemble",
+      intro:
+        "Une opportunité, une question ou simplement envie d'échanger ? Envoyez-moi un message.",
+      nameLabel: "Nom",
+      emailLabel: "E-mail",
+      messageLabel: "Message",
+      namePlaceholder: "Votre nom",
+      emailPlaceholder: "vous@exemple.com",
+      messagePlaceholder: "Parlez-moi de votre projet...",
+      send: "Envoyer le message",
+      sending: "Envoi...",
+      success: "Merci ! Votre message a bien été envoyé.",
+      error: "Veuillez remplir correctement tous les champs.",
+      directEmail: "Ou écrivez-moi directement",
+    },
+    footer: {
+      built: "Conçu et développé avec Next.js, TypeScript & Tailwind CSS.",
+      rights: "Tous droits réservés.",
+    },
+  },
+
+  en: {
     meta: {
       title: "Tomas Silva — Web Developer",
       description:
@@ -374,11 +649,278 @@ const englishDictionary: Dictionary = {
       built: "Designed made by me.",
       rights: "All rights reserved.",
     },
-  }
+  },
 
-export const dictionaries: Record<Locale, Dictionary> = {
-  fr: englishDictionary,
-  en: englishDictionary,
-  pt: englishDictionary,
+  pt: {
+    meta: {
+      title: "Tomas Silva — Programador Web",
+      description:
+        "Portfólio de Tomas Silva, programador web especializado em React, TypeScript e Next.js. Projetos, competências e percurso.",
+    },
+    nav: {
+      about: "Sobre",
+      skills: "Competências",
+      projects: "Projetos",
+      journey: "Percurso",
+      contact: "Contacto",
+    },
+    hero: {
+      role: "Programador Web Full-Stack",
+      greeting: "Olá, sou o",
+      name: "Tomas Silva",
+      tagline: "Desenho e construo aplicações web acessíveis e de alto desempenho.",
+      intro:
+        "Programador web júnior apaixonado pelo ecossistema JavaScript moderno. Transformo maquetes em interfaces cuidadas com React, TypeScript e Next.js.",
+      cvButton: "Descarregar CV",
+      contactButton: "Contactar-me",
+      available: "Disponível para novas oportunidades",
+    },
+    about: {
+      label: "Sobre",
+      title: "Um programador atento ao detalhe e ao utilizador",
+      paragraphs: [
+        "Sou um programador web orientado ao front-end que adora trabalhar na interseção entre design e código. O meu objetivo: entregar interfaces que não são apenas bonitas, mas também acessíveis, rápidas e fáceis de manter.",
+        "Durante a minha formação construí várias aplicações completas, da maquete à produção, aplicando boas práticas de acessibilidade (WCAG), segurança e desempenho.",
+        "Fora do código, gosto de explorar novas ferramentas, contribuir para projetos open-source e partilhar o que aprendo.",
+      ],
+      factsTitle: "Em resumo",
+      facts: [
+        { label: "Localização", value: "Paris, França" },
+        { label: "Experiência", value: "Projetos de formação + freelance" },
+        { label: "Idiomas", value: "Francês, Inglês, Português" },
+        { label: "Interesses", value: "UX, open-source, tipografia" },
+      ],
+    },
+    skills: {
+      label: "Competências",
+      title: "Competências por área",
+      intro:
+        "As minhas competências estão organizadas por área técnica e ambiente de trabalho para refletir melhor o meu perfil.",
+      blocks: [
+        {
+          id: "A",
+          code: "Bloco 1",
+          title: "Desenvolvimento front-end",
+          description:
+            "Prototipar uma aplicação e criar interfaces estáticas e dinâmicas acessíveis e responsivas.",
+          items: [
+            { name: "HTML / CSS / Tailwind", description: "Estrutura, estilos e design responsivo de interfaces web" },
+            { name: "JavaScript (ES2023+)", description: "Interatividade dinâmica e lógica moderna no cliente" },
+            { name: "React", description: "Framework para construir interfaces compostas e performantes" },
+            { name: "TypeScript", description: "Tipagem estática para código mais seguro e manutenível" },
+            { name: "Vue.js", description: "Framework progressivo para criar interfaces reativas e aplicações de página única" },
+            { name: "Acessibilidade (WCAG)", description: "Garantir acesso do site a todos os utilizadores" },
+          ],
+        },
+        {
+          id: "B",
+          code: "Bloco 2",
+          title: "Desenvolvimento back-end",
+          description:
+            "Criar uma base de dados, desenvolver componentes de acesso a dados e uma API segura.",
+          items: [
+            { name: "Node.js", description: "Runtime JavaScript do servidor para aplicações escaláveis" },
+            { name: "PHP", description: "Linguagem do lado do servidor usada para sites dinâmicos, APIs e plataformas CMS" },
+            { name: "SQL / PostgreSQL", description: "Gestão de dados relacionais e queries complexas" },
+            { name: "MongoDB", description: "Base de dados NoSQL orientada a documentos, adequada a esquemas flexíveis" },
+            { name: "REST & autenticação", description: "Design de API e proteção de acessos de utilizadores" },
+            { name: "Segurança (OWASP)", description: "Prevenção de vulnerabilidades comuns e proteção de dados" },
+          ],
+        },
+        {
+          id: "C",
+          code: "Bloco 3",
+          title: "Ferramentas, métodos & deployment",
+          description:
+            "Colaborar em equipa, versionar código, testar e implementar uma aplicação em contínuo.",
+          items: [
+            { name: "Git / GitHub", description: "Versionamento de código e colaboração" },
+            { name: "Métodos ágeis", description: "Organização iterativa e entrega rápida" },
+            { name: "Testes (Jest / Vitest)", description: "Testes unitários e de integração para qualidade" },
+            { name: "CI/CD & Vercel", description: "Deployment automatizado e integração contínua" },
+            { name: "Figma", description: "Design de interfaces e prototipagem colaborativa" },
+            { name: "Docker", description: "Contentorização de aplicações para manter ambientes consistentes" },
+          ],
+        },
+        {
+          id: "D",
+          code: "Language Systeme",
+          title: "Idiomas & sistemas",
+          description:
+            "Linguagens técnicas e ambientes de sistema que utilizo para programar, automatizar tarefas e trabalhar com eficiência em ambiente local.",
+          items: [
+            { name: "C++", description: "Linguagem de alto desempenho usada para reforçar bases de baixo nível, estruturas de dados e programação orientada à performance" },
+            { name: "C#", description: "Linguagem orientada a objetos usada para desenvolver aplicações estruturadas com tipagem forte" },
+            { name: "Bash", description: "Shell de scripting usado para automatizar tarefas, gerir ficheiros e acelerar fluxos de trabalho no terminal" },
+            { name: "Linux", description: "Sistema principal de desenvolvimento para terminal, Git, Docker e execução de servidores locais" },
+          ],
+        },
+      ],
+    },
+    projects: {
+      label: "Projetos",
+      title: "Uma seleção do meu trabalho",
+      intro: "Cada projeto está associado a um bloco de competências para ilustrar a minha progressão.",
+      viewDemo: "Demo",
+      viewCode: "Código",
+      items: [
+        {
+          id: "p1",
+          title: "Loja e-commerce",
+          description:
+            "Plataforma de e-commerce completa com carrinho, pagamento e painel de administração, construída em Next.js.",
+          image: projectImages.ecommerce,
+          tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
+          block: "B2",
+          demoUrl: "#",
+          codeUrl: "#",
+        },
+        {
+          id: "p2",
+          title: "Gestor de tarefas",
+          description:
+            "Aplicação Kanban em tempo real com arrastar e largar, colaboração e sincronização.",
+          image: projectImages.tasks,
+          tags: ["React", "TypeScript", "Tailwind"],
+          block: "B1",
+          demoUrl: "#",
+          codeUrl: "#",
+        },
+        {
+          id: "p3",
+          title: "Aplicação de meteorologia",
+          description:
+            "Painel meteorológico responsivo que consome uma API externa, com gráficos e geolocalização.",
+          image: projectImages.weather,
+          tags: ["React", "API REST", "Recharts"],
+          block: "B1",
+          demoUrl: "#",
+          codeUrl: "#",
+        },
+        {
+          id: "p4",
+          title: "CMS de blog",
+          description:
+            "Sistema de gestão de conteúdos com editor Markdown, autenticação e deployment contínuo.",
+          image: projectImages.blog,
+          tags: ["Next.js", "Node.js", "CI/CD"],
+          block: "B3",
+          demoUrl: "#",
+          codeUrl: "#",
+        },
+      ],
+    },
+    journey: {
+      label: "Percurso",
+      title: "Análise da minha progressão",
+      intro:
+        "Um olhar retrospetivo sobre as etapas que fizeram crescer as minhas competências ao longo da formação.",
+      tabs: {
+        work: "Trabalho",
+        studies: "Estudos",
+      },
+      tracks: {
+        work: [
+          {
+            period: "Out 2025 - Presente",
+            title: "eVISO - AI for Commodities",
+            role: "Programador Full-Stack",
+            description:
+              "Desenvolvimento de funcionalidades orientadas ao produto para uma plataforma do setor energético, com foco em performance front-end e integração de APIs.",
+          },
+          {
+            period: "Jan 2023 - Mar 2025",
+            title: "Digital Perspective",
+            role: "Programador Front-End",
+            description:
+              "Criação de websites e interfaces modernas para clientes, com atenção à experiência responsiva, WordPress e Elementor.",
+          },
+          {
+            period: "Jan 2020 - Mar 2020",
+            title: "Bitcliq",
+            role: "Programador de Software (Estágio)",
+            description:
+              "Participação no desenvolvimento mobile e web, além de testes funcionais em aplicações para clientes.",
+          },
+          {
+            period: "Abr 2019 - Jul 2019",
+            title: "Bitcliq",
+            role: "Programador de Software (Estágio)",
+            description:
+              "Primeira experiência profissional em desenvolvimento web, validação de funcionalidades e trabalho em equipa técnica.",
+          },
+        ],
+        studies: [
+          {
+            period: "Set 2020 - Jul 2025",
+            title: "Politécnico de Leiria",
+            role: "Licenciatura em Engenharia Informática",
+            description:
+              "Percurso académico focado em engenharia de software, arquitetura, bases de dados e desenvolvimento de aplicações completas.",
+          },
+          {
+            period: "Mar 2022 - Jul 2022",
+            title: "Zagreb University of Applied Sciences",
+            role: "Erasmus+ - Engenharia Informática",
+            description:
+              "Semestre internacional com foco em colaboração multicultural, autonomia técnica e projetos de software.",
+          },
+          {
+            period: "Set 2017 - Jul 2020",
+            title: "Escola Secundária Raul Proença",
+            role: "Curso Profissional de Gestão e Programação de Sistemas",
+            description:
+              "Base sólida em programação e sistemas, com primeiros projetos práticos de desenvolvimento.",
+          },
+        ],
+      },
+      steps: [
+        {
+          period: "Etapa 1",
+          title: "As fundações",
+          description:
+            "Aprendizagem de HTML, CSS e JavaScript. Primeiras páginas estáticas e compreensão do DOM e da acessibilidade.",
+        },
+        {
+          period: "Etapa 2",
+          title: "Front-end moderno",
+          description:
+            "Evolução em React e TypeScript. Criação de interfaces componentizadas, gestão de estado e consumo de APIs.",
+        },
+        {
+          period: "Etapa 3",
+          title: "Rumo ao full-stack",
+          description:
+            "Conceção de bases de dados, desenvolvimento de APIs seguras e integração back-end com Next.js.",
+        },
+        {
+          period: "Etapa 4",
+          title: "Profissionalização",
+          description:
+            "Testes, integração contínua, deployment e trabalho em metodologia ágil em projetos reais.",
+        },
+      ],
+    },
+    contact: {
+      label: "Contacto",
+      title: "Vamos trabalhar juntos",
+      intro:
+        "Uma oportunidade, uma questão ou só vontade de conversar? Envie-me uma mensagem.",
+      nameLabel: "Nome",
+      emailLabel: "E-mail",
+      messageLabel: "Mensagem",
+      namePlaceholder: "O seu nome",
+      emailPlaceholder: "voce@exemplo.com",
+      messagePlaceholder: "Fale-me do seu projeto...",
+      send: "Enviar mensagem",
+      sending: "A enviar...",
+      success: "Obrigado! A sua mensagem foi enviada.",
+      error: "Por favor preencha todos os campos corretamente.",
+      directEmail: "Ou envie-me um e-mail diretamente",
+    },
+    footer: {
+      built: "Concebido e desenvolvido com Next.js, TypeScript & Tailwind CSS.",
+      rights: "Todos os direitos reservados.",
+    },
+  },
 }
-
