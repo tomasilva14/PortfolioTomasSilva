@@ -526,13 +526,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
         },
         {
           id: "p4",
-          title: "Blog CMS",
+          title: "Klivio",
           description:
-            "Content management system with a Markdown editor, authentication and continuous deployment.",
+            "A Template website. Made for sales and for schools. The template was used for a website where you could buy courses",
           image: projectImages.blog,
-          tags: ["Next.js", "Node.js", "CI/CD"],
-          block: "B3",
-          demoUrl: "#",
+          tags: ["HTML", "TailWind", "CSS"],
+          block: "B1",
+          demoUrl: "https://tomasilva14.github.io/KlivioTailwindWAC/",
           codeUrl: "#",
         },
       ],
